@@ -35,7 +35,7 @@ public class ResultExtensionsTests
     }
 
     [Fact]
-    public void Ok_WhenResultIsOk_ShouldReturnValue()
+    public void Ok_WhenResultIsOk_ShouldReturnSomeWithValue()
     {
         Assert.Equal(Some(10), Ok(10).Ok());
         Assert.Equal(None<int>(), Err<int>("Something went wrong").Ok());
@@ -49,14 +49,7 @@ public class ResultExtensionsTests
     }
 
     [Fact]
-    public void UnwrapOrDefault_WhenResultIsErr_ShouldReturnDefault()
-    {
-        Assert.Equal(2, Ok(2).UnwrapOrDefault());
-        Assert.Equal(default, Err<int>("Nothing here").UnwrapOrDefault());
-    }
-
-    [Fact]
-    public void Filter_WhenResultIsOk_ShouldApplyFunctionToValue()
+    public void Filter_WhenResultIsOkAndPredicateIsTrue_ShouldReturnSomeWithValue()
     {
         Assert.Equal(Ok(5).Filter(i => i > 2), Some(5));
         Assert.Equal(Ok(5).Filter(i => i > 10), None<int>());

@@ -4,16 +4,10 @@ namespace Domain.UnitTests.Primitives;
 
 public class ValueObjectTests
 {
-    private class TestValueObject : ValueObject
+    private class TestValueObject(int value1, string value2) : ValueObject
     {
-        public TestValueObject(int value1, string value2)
-        {
-            Value1 = value1;
-            Value2 = value2;
-        }
-
-        public int Value1 { get; }
-        public string Value2 { get; }
+        public int Value1 { get; } = value1;
+        public string Value2 { get; } = value2;
 
         public override IEnumerable<object> GetAtomicValues()
         {
@@ -23,7 +17,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void Equals_WhenValueObjectsAreEqual_ShouldReturnTrue()
+    public void Equals_WhenValueObjectsHaveSameValues_ShouldReturnTrue()
     {
         TestValueObject left = new(1, "test");
         TestValueObject right = new(1, "test");
@@ -33,7 +27,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void Equals_WhenValueObjectsAreNotEqual_ShouldReturnFalse()
+    public void Equals_WhenValueObjectsHaveDifferentValues_ShouldReturnFalse()
     {
         TestValueObject left = new(1, "test1");
         TestValueObject right = new(1, "test2");
@@ -44,7 +38,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void EqualsOperator_WhenValueObjectsAreEqual_ShouldReturnTrue()
+    public void EqualsOperator_WhenValueObjectsHaveSameValues_ShouldReturnTrue()
     {
         TestValueObject left = new(1, "test");
         TestValueObject right = new(1, "test");
@@ -53,7 +47,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void NotEqualsOperator_WhenValueObjectsAreNotEqual_ShouldReturnTrue()
+    public void NotEqualsOperator_WhenValueObjectsHaveDifferentValues_ShouldReturnTrue()
     {
         TestValueObject left = new(1, "test1");
         TestValueObject right = new(1, "test2");
@@ -62,7 +56,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void GetHashCode_WhenValueObjectsAreEqual_ShouldReturnSameValue()
+    public void GetHashCode_WhenValueObjectsHaveSameValues_ShouldReturnSameValue()
     {
         TestValueObject left = new(1, "test");
         TestValueObject right = new(1, "test");
@@ -71,7 +65,7 @@ public class ValueObjectTests
     }
 
     [Fact]
-    public void GetHashCode_WhenValueObjectsAreNotEqual_ShouldReturnDifferentValues()
+    public void GetHashCode_WhenValueObjectsHaveDifferentValues_ShouldReturnDifferentValues()
     {
         TestValueObject left = new(1, "test1");
         TestValueObject right = new(1, "test2");

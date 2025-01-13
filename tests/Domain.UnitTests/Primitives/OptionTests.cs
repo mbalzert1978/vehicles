@@ -7,13 +7,13 @@ namespace Domain.UnitTests.Primitives;
 public class OptionTests
 {
     [Fact]
-    public void None_ShouldReturnDefaultOption()
+    public void None_WhenCalled_ShouldReturnDefaultOption()
     {
         Assert.Equal("Nothing here", None<string>().Or("Nothing here"));
     }
 
     [Fact]
-    public void Some_ShouldCreateOptionWithValue()
+    public void Some_WhenCalledWithValue_ShouldCreateOptionWithValue()
     {
         Assert.Equal("Hello there", Some("Hello there").Or("Nothing here"));
     }
@@ -56,7 +56,7 @@ public class OptionTests
     }
 
     [Fact]
-    public void Constructor_WhenValueIsNull_ShouldThrow()
+    public void Constructor_WhenValueIsNull_ShouldThrowArgumentNullException()
     {
         Assert.Throws<ArgumentNullException>(() => new Option<string>(null!));
     }

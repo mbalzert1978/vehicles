@@ -43,7 +43,7 @@ public class OptionExtensionTests
         Assert.Equal("Hello there", Some("Hello there").Or("Nothing here"));
 
     [Fact]
-    public void Or_WhenOptionIsSome_IgnoresDefaultFunction() =>
+    public void Or_WhenOptionIsSomeAndGivenDefaultFunction_ShouldIgnoreDefaultFunction() =>
         Assert.Equal("Hello there", Some("Hello there").Or(() => "Nothing here"));
 
     [Fact]
@@ -51,14 +51,14 @@ public class OptionExtensionTests
         Assert.Equal("Nothing here", None<string>().Or("Nothing here"));
 
     [Fact]
-    public void Or_WhenOptionIsNone_ShouldComputeDefaultFunction() =>
+    public void Or_WhenOptionIsNoneAndGivenDefaultFunction_ShouldComputeDefaultFunction() =>
         Assert.Equal("Default value", None<string>().Or(() => "Default value"));
 
     [Fact]
-    public void Map_WhenGivenFunctionThatReturnsOption_ShouldReturnMappedValue() =>
+    public void Map_WhenGivenFunctionThatReturnsOptionAndInputIsValid_ShouldReturnMappedValue() =>
         Assert.Equal(Some(100), Some(10).Map(Square));
 
     [Fact]
-    public void Map_WhenGivenFunctionThatReturnsOption_ShouldReturnDefault() =>
+    public void Map_WhenGivenFunctionThatReturnsOptionAndInputIsInvalid_ShouldReturnNone() =>
         Assert.Equal(None<int>(), Some(1_000_000).Map(Square));
 }
