@@ -1,7 +1,16 @@
-namespace Domain.UnitTests;
+using Domain.Primitives;
+
+namespace Domain.UnitTests.Primitives;
 
 public class EntityTests
 {
+    [Fact]
+    public void Entity_GetHashCode_WhenEntitiesAreEqual_ShouldReturnSameHashCode()
+    {
+        Guid id = Guid.NewGuid();
+        Assert.Equal(new FakeEntityA(id).GetHashCode(), new FakeEntityA(id).GetHashCode());
+    }
+
     [Fact]
     public void Entity_WhenComparedToAnotherEntityShouldReturnFalseWhenTheyAreNotTheSameType()
     {

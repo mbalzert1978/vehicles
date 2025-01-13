@@ -1,6 +1,6 @@
-﻿namespace Domain.UnitTests;
+﻿namespace Domain.UnitTests.Primitives;
 
-using Domain;
+using Domain.Primitives;
 
 public class ErrorTests
 {
